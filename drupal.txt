@@ -1,0 +1,177 @@
+https://www.youtube.com/watch?v=33Tj-COt9zo
+Drupal 7:
+sites/all/modules
+
+folder: mymodule
+
+file: mymodule.info - 
+name = Mymodule
+description = Drupal 7 test module
+core = 7.x
+package = Custom
+
+file: mymodule.module
+<?php
+/**
+ * @file Drupal 7 test module
+ */
+ 
+ /**
+  * Implements hook_menu().
+  */
+ function mymodule_menu(){
+   $items['mymodule'] = array(
+      'title' => 'Mymodule',
+	  'page callback' => 'mymodule.page',
+	  'access arguments' => array('access content'),
+   );
+   
+   return $items;
+ }
+ 
+ function mymodule_page(){
+   $output = array(
+     '#markup' => t('This is mymodule page'),
+   );
+   
+   return $output;
+ }
+ 
+ Modules/CUSTOM -> Mymodule - enabled
+ Navigation-Mymodule - localhost/mymodule:
+ 
+ title Mymodule под него надпис This is mymodule page
+ ====================================================
+ Now Drupal 8 version:
+ distributes folder ->
+ - core folder
+ - modules folder: съдържа -mymodule folder
+ 
+ Create mymodule.info.yml in modules/mymodule - folder
+ Info file is in YAML format.
+ 
+ Drupal 8 contrib and custom modules goes to -modules- dirtectory
+ instead of sites/all/modules in D7.
+ 
+ You can create modules/contrib
+                modules/custom type folder structures
+				
+Core modules are in core/modules
+
+file: mymodule.info.yml ->
+name: Mymodule
+description: Drupal 8 test module
+core: 8.x
+package: Custom
+ 
+type: module    (Add type (e.g. module, theme, profile)) <-
+
+Create --mymodule.module file-- (to see module in the extend page) 
+Menu -> Extend(old name Modules in D7) - Modules page is now named Extend
+
+mymodule.module file: ->
+<?php
+/**
+ * @file Drupal 8 test module
+ */
+  
+ /**
+  * Implements hook_menu().
+  */
+ function mymodule_menu(){
+   $items['mymodule'] = array(
+      'title' => 'Mymodule', //link name Mymodule and title are equal
+	  'description' => 'Click this to see Mymodule page', // Hover text ('title' attribute in link)
+	  'route_name' => 'mymodule.page', // specified in mymodule.routing.yml
+   );
+   
+   return $items;
+ }
+ 
+ 
+ <-
+
+mymodule.routing.yml file: Use 2 spaces as indent or you get parser error.
+->
+mymodule.page:
+  path: '/mymodule'
+  defaults:
+    _content: 'Drupal\mymodule\Controller\MymoduleController::mymodulePage'
+  requirements: 
+    _permission: 'access content'
+<-
+
+Create MymoduleController.php file in modules/mymodule/lib/Drupal/mymodule/Controller - folder
+modules/mymodule/lib/Drupal/mymodule/Controller/MymoduleController.php  ->
+<?php
+// this path => modules/mymodule/lib/Drupal/mymodule/Controller/MymoduleController.php
+// will change to this later =>modules/mymodule/lib/Controller/MymoduleController.php
+// https://drupal.org/node/1971198
+
+/**
+ * @file MymoduleController
+ */
+ 
+ namespace Drupal\mymodule\Controller;
+ use Drupal\Core\Controller\ControllerBase;
+ 
+ class MymoduleController extends ControllerBase {
+ //this is same as D7 page_callback function mymodule_page() in mymodule.module
+    public function mymodulePage(){	
+	    $output = array();
+		
+		$output['mymodule'] = array(
+		   '#markup' => t('This is my drupal 8 module page'), // този надпис се появява като поставиш мишката върху линка Mymodule
+		);
+		
+		return $output;
+	
+	}
+ 
+ }
+ 
+ <-
+ 
+ localhost/mymodule -----> Next we add the menu link in mymodule.module
+ 
+ So routing is now separated from the menu system and menu callback functionality is now inside controller
+ class.
+ 
+ https://softuni.bg/trainings/1459/drupal-8-site-building-october-2016#lesson-3993
+ 
+ https://github.com/drupalizeme/chad
+ 
+ https://www.drupal.org/docs/8/api/block-api/overview
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

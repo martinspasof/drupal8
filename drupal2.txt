@@ -1,0 +1,37 @@
+Трябва ни да се направи research за това как се пишат custom plugins / modules или както там се наричат за Drupal (предполагам за Drupal 8).
+
+Идеята е да намериш информация, до колко е възможно ние да се справим с нещо подобно, 
+ако клиент пожелае да му се изработи plugin, който той да предлага като негов собствен. 
+----------------------------------------------------------------------------->
+
+Здравейте,
+
+В Drupal 8 има https://github.com/drupalizeme/chad
+core/modules/book/Plugin/Block/BookNavigationBlock
+forum/lib/Drupal/forum/Plugin/Block/ForumBlockBase.php
+
+drupal/modules/custom/chad/lib/Drupal/chad/Controller
+drupal/modules/custom/chad/lib/Drupal/chad/Form
+                                    /chad/Plugin/Block/ChadBlock.php
+									
+Здравей, Анжел, 
+
+Пиша ти на теб първо преди да отговоря на имейла дали информацията по-долу е приемлива.
+
+Поразгледах в Drupal 8 едно от апи-тата   https://www.drupal.org/docs/8/api/block-api/overview  .
+Към тях например - block-api може да си използва Drupal\Core\Block\BlockBase класа и да се създаде custom block api 
+и да се преизползва функционалността на BlockBase.
+
+В modules папката може да се създаде custom module примерно: - форум модул или чат модул.
+Структурата на един custom module може да се види като пример в: https://github.com/DrupalizeMe/chad
+Създавайки този модул се създават няколко файла:
+
+- 
+https://www.drupal.org/docs/8/api/block-api/overview
+https://www.drupal.org/docs/8/api/form-api/introduction-to-form-api
+https://www.youtube.com/watch?v=2vEG2p-D_no
+https://www.youtube.com/watch?v=2o5uY-iOoMo
+
+
+
+

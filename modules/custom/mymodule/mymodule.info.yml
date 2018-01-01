@@ -1,0 +1,6 @@
+name: Mymodule
+description: Drupal 8 test module
+core: 8.x
+package: Custom
+
+type: module

@@ -1,0 +1,6 @@
+mymodule.page:
+  path: '/mymodule'
+  defaults:
+    _content: 'Drupal\mymodule\Controller\MymoduleController::mymodulePage'
+  requirements:
+    _permission: 'access content'

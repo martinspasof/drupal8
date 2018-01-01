@@ -1,0 +1,17 @@
+<?php
+/**
+ * @file Drupal 8 test module
+ */
+
+/**
+  * Implements hook_menu().
+  */
+ function mymodule_menu(){
+   $items['mymodule'] = array(
+      'title' => 'Mymodule',
+      'description' => 'Click this to see Mymodule page', // Hover text ('title' attribute in link)
+      'route_name' => 'mymodule.page', // specified in mymodule.routing.yml
+   );
+   
+   return $items;
+ }
